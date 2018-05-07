@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Tienda Virtual</title>
+        <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="#{request.contextPath}/css/custom.css" rel="stylesheet" />
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-fixed-top navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Tienda Virtual</a>
+                </div>
+                <h:form>
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#{request.contextPath}/productos.xhtml">Inicio</a></li>
+                            <li>
+                                <h:commandLink action="#{loginBean.logout}" styleClass="">
+                                    <h:outputText value="Salir" />
+                                </h:commandLink>
+                            </li>
+                        </ul>
+                        <h3 class="pull-right" style="color: #fff">Bienvenido, #{ session.getAttribute('usuario').getNombre()} #{session.getAttribute('usuario').getApellido()}</h3>
+                    </div><!-- /.nav-collapse -->
+                </h:form>
+            </div><!-- /.container -->
+        </nav><!-- /.navbar -->
+
+        <div class="container-fluid">
+            <div class="row row-offcanvas row-offcanvas-right">
+                <div class="col-xs-12 col-sm-9 col-sm-push-3">
+                    <p class="pull-right visible-xs">
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas" title="Toggle sidebar"><i class="fa fa-chevron-right"></i></button>
+                    </p>
+                    <div class="row">
+                        <h3>Mi carrito</h3>
+                        <table class="table">
+                            <thead>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                            </thead>
+                            <tbody>
+                                <h:form>
+                                    <ui:repeat value="#{session.getAttribute('listDetalleCarrito')}" var="carrito">
+                                        <tr>
+                                            <td>#{carrito.producto.nombre}</td>
+                                            <td>#{carrito.cantidad}</td>
+                                            <td>#{carrito.precioUnitario}</td>
+                                        </tr>
+                                    </ui:repeat>
+                                </h:form>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Total: #{carritoBean.total}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div><!--/row-->
+                </div><!--/.col-xs-12.col-sm-9-->
+
+                <div class="col-xs-6 col-sm-3 col-sm-pull-9 sidebar-offcanvas" id="sidebar">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">Categorias</a>
+                        <ui:repeat value="#{productosBean.lstCategoria}" var="categoria">
+                            <a class="list-group-item" href="#">#{categoria.nombre}</a>
+                        </ui:repeat>
+                    </div>
+                </div><!--/.sidebar-offcanvas-->
+            </div><!--/row-->
+
+
+            <footer>
+                <p> 2015 Company, Inc.</p>
+            </footer>
+
+        </div><!--/.container-->
+
+        <script type="text/javascript" src="#{request.contextPath}/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="#{request.contextPath}/js/bootstrap.min.js"></script>    
+        <script type="text/javascript" src="#{request.contextPath}/js/custom.js"></script>    
+    </h:body>
+</html>

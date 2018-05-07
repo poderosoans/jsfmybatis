@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        locale="#{facesContext.externalContext.requestLocale}">
+    <html>
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                <title>JSF</title>
+
+                <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet" />
+                <link href="#{request.contextPath}/css/custom.css" rel="stylesheet" />
+        </h:head>
+
+                    <h:body class="fixed-left">
+                        <!-- Begin page -->
+                        <div id="wrapper">
+
+                            <!-- Top Bar Start -->
+                            <div class="topbar">
+                                <!-- Header -->
+                                <ui:insert name="header">
+                                    <ui:include src="/comun/cabecera.xhtml" />
+                                </ui:insert>
+                            </div>
+                            <!-- Top Bar End -->
+
+
+                            <!-- ========== Left Sidebar Start ========== -->
+
+                            <div class="left side-menu">
+                                <div class="sidebar-inner slimscrollleft">
+
+                                    <!--- Sidemenu -->
+                                    <div id="sidebar-menu">
+                                        <ui:insert name="menus">
+                                            <ui:include src="/comun/menu.xhtml" />
+                                        </ui:insert>
+                                    </div>
+                                    <!-- Sidebar -->
+                                    <div class="clearfix"></div>
+
+                                </div>
+                                <!-- Sidebar -left -->
+
+                            </div>
+                            <!-- Left Sidebar End -->
+
+
+
+                            <!-- ============================================================== -->
+                            <!-- Start right Content here -->
+                            <!-- ============================================================== -->
+                            <div class="content-page">
+                                <!-- Start content -->
+                                <div class="content">
+                                    <!-- CUERPO -->
+                                    <ui:insert name="body">
+                                        <ui:include src="/comun/cuerpo.xhtml" />
+                                    </ui:insert>
+
+                                </div> <!-- content -->
+
+
+                                <!-- Footer -->
+                                <ui:insert name="footer">
+                                    <ui:include src="/comun/pie.xhtml" />
+                                </ui:insert>
+                            </div>
+
+
+                        </div>
+                        <!-- END wrapper -->
+                        <script type="text/javascript" src="#{request.contextPath}/js/jquery-3.3.1.min.js"></script>
+                        <script type="text/javascript" src="#{request.contextPath}/js/bootstrap.min.js"></script>    
+                        <script type="text/javascript" src="#{request.contextPath}/js/custom.js"></script>    
+             </h:body>
+     </html>
+</f:view>    
